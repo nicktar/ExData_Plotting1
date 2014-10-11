@@ -1,6 +1,3 @@
-## Important Note 
-The committed graphs show "Do", "Fr", "Sa" as labels as R uses the system language to abreviate the days. I coulnd't figure out how to get R to use english instead.
-
 ## Introduction
 
 This assignment uses data from
