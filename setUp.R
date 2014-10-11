@@ -22,9 +22,10 @@ setup <- function() {
     return
 }
 
-readData1 <- function() {
-    data <- read.csv(file="data/household_power_consumption.txt", na.strings=c("?"), sep=";")
-    date <- subset(data, grepl("[12]/2/2007", data$Date))
-    within(data, DateTime <- strptime(paste(data$Date, data$Time, sep="-"), format="%d/%m/%Y-%H:%M:%S", tz = ""))
-    data <- as.data.table(data)
+readData <- function() {
+    colNames = c("date", "time", "globalActivePower", "globalReactivePower", "voltage", "globalIntensity", "subMetering1", "subMetering2", "subMetering3")
+    colClasses = c("character", "character", rep("numeric",7) )
+    data <- read.table("data/household_power_consumption.txt", header=TRUE, col.names=colNames, colClasses=colClasses, na.strings="?", sep=";")
+    data <- subset(data, grepl("[12]/2/2007", data$Date))
+    within(data, DateTime <- strptime(paste(Date, Time, sep="-"), format="%d/%m/%Y-%H:%M:%S", tz = ""))
 }
