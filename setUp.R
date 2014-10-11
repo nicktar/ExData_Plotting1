@@ -26,7 +26,7 @@ readData <- function() {
     colNames = c("Date", "Time", "GlobalActivePower", "GlobalReactivePower", "Voltage", "GlobalIntensity", "SubMetering1", "SubMetering2", "SubMetering3")
     colClasses = c("character", "character", rep("numeric",7) )
     data <- read.table("data/household_power_consumption.txt", header=TRUE, col.names=colNames, colClasses=colClasses, na.strings="?", sep=";")
-    data <- subset(data, grepl("[12]/2/2007", data$Date))
+    data <- subset(data, grepl("^[12]/2/2007", data$Date))
     within(data, DateTime <- strptime(paste(Date, Time, sep="-"), format="%d/%m/%Y-%H:%M:%S", tz = ""))
     data
 }
