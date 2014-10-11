@@ -1,0 +1,7 @@
+source("setUp.R")
+setup()
+data <- readData()
+data$DateTime <- strptime(paste(as.character(as.Date(data$Date, "%d/%m/%Y")), data$Time), "%Y-%m-%d %H:%M:%S")
+png(filename="plot2.png", width=480, height=480, units="px")
+with(data, plot(DateTime, GlobalActivePower, main = "", ylab = "Global Active Power (kilowatts)", type = "l", xlab = ""))
+dev.off()
